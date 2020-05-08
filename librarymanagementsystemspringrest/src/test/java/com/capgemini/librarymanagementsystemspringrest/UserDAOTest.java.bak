@@ -1,24 +1,26 @@
-package com.capgemini.librarymanagementsystemhibernate;
+package com.capgemini.librarymanagementsystemspringrest;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.capgemini.librarymanagementsystemhibernate.dao.UsersDAO;
-import com.capgemini.librarymanagementsystemhibernate.dao.UsersDAOImplement;
-import com.capgemini.librarymanagementsystemhibernate.dto.BookBean;
-import com.capgemini.librarymanagementsystemhibernate.dto.UsersBean;
+import com.capgemini.librarymanagementsystemspringrest.dao.UsersDAO;
+import com.capgemini.librarymanagementsystemspringrest.dto.BookBean;
+import com.capgemini.librarymanagementsystemspringrest.dto.UsersBean;
 
 public class UserDAOTest {
-	private UsersDAO dao = new UsersDAOImplement();
+	@Autowired
+	private UsersDAO dao;
 	
 	@Test
 	public void testRegisterValid() {
 		UsersBean bean = new UsersBean();
+		bean.setuId(100005);
 		bean.setFirstName("junnu");
 		bean.setLastName("sanga");
-		bean.setEmail("sanga@gmail.com");
+		bean.setEmail("junnu@gmail.com");
 		bean.setPassword("Junnu@123");
 		bean.setRole("student");
 		boolean check = dao.register(bean);
@@ -28,9 +30,10 @@ public class UserDAOTest {
 	@Test
 	public void testRegisterInvalid() {
 		UsersBean bean = new UsersBean();
+		bean.setuId(100005);
 		bean.setFirstName("junnu");
 		bean.setLastName("sanga");
-		bean.setEmail("sanga@gmail.com");
+		bean.setEmail("junnu@gmail.com");
 		bean.setPassword("Junnu@123");
 		bean.setRole("student");
 		boolean check = dao.register(bean);
@@ -39,13 +42,13 @@ public class UserDAOTest {
 
 	@Test
 	public void testLoginValid() {
-		UsersBean info = dao.login("sanga@gmail.com", "Junnu@123");
+		UsersBean info = dao.login("junnu@gmail.com", "Junnu@123");
 		Assertions.assertNotNull(info);
 	}
 	
 	@Test
 	public void testLoginInvalid() {
-		UsersBean info = dao.login("sanga@gmail.com", "Junnu@123");
+		UsersBean info = dao.login("junnu@gmail.com", "Junnu@123");
 		Assertions.assertNull(info);
 	}
 	
@@ -108,13 +111,13 @@ public class UserDAOTest {
 	
 	@Test
 	public void testUpdatePasswordValid() {
-		boolean check = dao.updatePassword(100102, "Junnu@123", "Junnu@123", "admin");
+		boolean check = dao.updatePassword(100102, "junnu@123", "Admin@123", "admin");
 		Assertions.assertTrue(check);
 	}
 	
 	@Test
 	public void testUpdatePasswordInvalid() {
-		boolean check = dao.updatePassword(100102, "Junnu@123", "Junnu@123", "student");
+		boolean check = dao.updatePassword(100102, "junnu@123", "Admin@123", "student");
 		Assertions.assertFalse(check);
 	}
 	

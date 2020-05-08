@@ -18,7 +18,7 @@ public class UserDAOTest {
 		UsersBean bean = new UsersBean();
 		bean.setFirstName("junnu");
 		bean.setLastName("sanga");
-		bean.setEmail("sanga@gmail.com");
+		bean.setEmail("junnu@gmail.com");
 		bean.setPassword("Junnu@123");
 		bean.setRole("student");
 		boolean check = dao.register(bean);
@@ -30,7 +30,7 @@ public class UserDAOTest {
 		UsersBean bean = new UsersBean();
 		bean.setFirstName("junnu");
 		bean.setLastName("sanga");
-		bean.setEmail("sanga@gmail.com");
+		bean.setEmail("junnu@gmail.com");
 		bean.setPassword("Junnu@123");
 		bean.setRole("student");
 		boolean check = dao.register(bean);
@@ -39,13 +39,13 @@ public class UserDAOTest {
 
 	@Test
 	public void testLoginValid() {
-		UsersBean info = dao.login("sanga@gmail.com", "Junnu@123");
+		UsersBean info = dao.login("junnu@gmail.com", "Junnu@123");
 		Assertions.assertNotNull(info);
 	}
 	
 	@Test
 	public void testLoginInvalid() {
-		UsersBean info = dao.login("sanga@gmail.com", "Junnu@123");
+		UsersBean info = dao.login("junnu@gmail.com", "Junnu@123");
 		Assertions.assertNull(info);
 	}
 	
